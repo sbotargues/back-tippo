@@ -13,7 +13,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost/project-management-server", {
+  .connect("mongodb://localhost/backend-tippo", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -26,11 +26,11 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-
-const projectsRouter = require("./routes/project-routes");
-const taskRouter = require("./routes/task-routes");
+const authRouter = require("./routes/auth");
+const homeRouter = require("./routes/home");
+const profileRouter = require("./routes/profile");
+const postRouter = require("./routes/post");
+const searchRouter = require("./routes/search");
 
 const app = express();
 
@@ -57,11 +57,11 @@ app.use(
   })
 );
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-
-app.use("/api", projectsRouter);
-app.use("/api", taskRouter);
+app.use("/auth", authRouter);
+app.use("/home", homeRouter);
+app.use("/profile", profileRouter);
+app.use("/post", postRouter);
+app.use("/search", searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
