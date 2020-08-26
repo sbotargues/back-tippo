@@ -25,6 +25,7 @@ router.post("/edit", isLoggedIn(), (req, res, next) => {
 
 router.get("/myprofile", isLoggedIn(), (req, res, next) => {
     User.findById(req.session.currentUser._id)
+    .populate('post')
   .then(response => {
     res.json(response);
   })
@@ -35,6 +36,7 @@ router.get("/myprofile", isLoggedIn(), (req, res, next) => {
 
 router.get("/users/:id", isLoggedIn(), (req, res, next) => {
   User.findById(req.params.id)
+  .populate('post')
 .then(response => {
   res.json(response);
 })

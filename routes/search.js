@@ -7,8 +7,8 @@ const {
   isLoggedIn,
 } = require("../helpers/middelwares");
 
-router.get("/",isLoggedIn(), (req, res, next) => {
-    User.findById(req.query.username)
+router.get("/", (req, res, next) => {
+    User.find({username:req.query.username})
   .then(response => {
     res.json(response);
   })

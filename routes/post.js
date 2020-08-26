@@ -46,25 +46,25 @@ router.post("/edit/:id",isLoggedIn(), (req, res, next) => {
 
 
 router.post("/publish", isLoggedIn(), (req, res, next) => {
-    Post.create({
-      postPhoto: req.body.postPhoto,
-      postDescription: req.body.postDescription,
-      user: req.session.currentUser._id
-    })
-    .then(response => {
-        User.findByIdAndUpdate(req.session.currentUser._id, {
-          $push: { post: response._id}
-        })
-      .then(theResponse => {
-        res.json(theResponse);
-      })
-      .catch(err => {
-        res.json(err);
-      });
+  Post.create({
+    postPhoto: req.body.postPhoto,
+    postDescription: req.body.postDescription,
+    user: req.session.currentUser._id
   })
-  .catch(err => {
-    res.json(err);
-  });
+  .then(response => {
+      User.findByIdAndUpdate(req.session.currentUser._id, {
+        $push: { post: response._id}
+      })
+    .then(theResponse => {
+      res.json(theResponse);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+})
+.catch(err => {
+  res.json(err);
+});
 });
 
 module.exports = router;

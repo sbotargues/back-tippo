@@ -31,6 +31,10 @@ This is a social network that apart from providing the utilities of following an
 - See someone's followers and who follows me.
 - Location and hashtag search.
 - 24 hour posts.
+- Chat
+- Followers
+- Likes
+- Comments
 
 
 
