@@ -35,7 +35,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.PUBLIC_DOMAIN],
+    origin: [process.env.PUBLIC_DOMAIN,"https://tippo-app.herokuapp.com/","http://tippo-app.herokuapp.com/"],
   })
 );
 app.use((req, res, next) => {
@@ -78,6 +78,11 @@ app.use(express.static(path.join(__dirname, "public")));
  app.use("/search", searchRouter);
  app.use("/", fileUploadRouter);
 
+// ROUTE FOR SERVING REACT APP (index.html)
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 // ERROR HANDLING
 // catch 404 and forward to error handler
