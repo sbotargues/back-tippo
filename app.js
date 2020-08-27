@@ -15,6 +15,7 @@ const homeRouter = require("./routes/home");
 const profileRouter = require("./routes/profile");
 const postRouter = require("./routes/post");
 const searchRouter = require("./routes/search");
+const fileUploadRouter = require("./routes/file-upload-routes")
 
 
 // MONGOOSE CONNECTION
@@ -75,6 +76,7 @@ app.use(express.static(path.join(__dirname, "public")));
  app.use("/profile", profileRouter);
  app.use("/post", postRouter);
  app.use("/search", searchRouter);
+ app.use("/", fileUploadRouter);
 
 
 // ERROR HANDLING
